@@ -8,9 +8,11 @@ $(function() {
       main    = $('#main'),
       menu    = $('#menu'),
       posttoc = $('#post-toc-menu'),
+	  tagsRight = $("li[name='sidebar-tag-right']"),
       x1, y1;
 
   // run this function after pjax load.
+  $('.toc').hide();
   var afterPjax = function() {
     // open links in new tab.
     $('#main').find('a').filter(function() {
@@ -100,14 +102,28 @@ $(function() {
   $('#sidebar-tags').on('click', '.sidebar-tag', function() {
     var filter = $(this).data('filter');
     toc.hide();
+	tagsRight.hide();
+	$('.toc').hide();
     if (filter === 'recent') {
       toc.slice(0, {{ site.recent_num }}).fadeIn(350);
+    } else if(filter==='技术宅')  {
+    	$('#sidebar-tags-right .sidebar-tag').fadeIn(350); 
+		$('.toc-link[data-tags~=' + filter + ']').fadeIn(350); 
     } else {
-      $('.toc-link[data-tags~=' + filter + ']').fadeIn(350);
+      $('.toc-link[data-tags~=' + filter + ']').fadeIn(350); 
+    	
     }
     $(this).addClass('active').siblings().removeClass('active');
   });
+  //tags right
+  $('#sidebar-tags-right .sidebar-tag').bind('click',function() {
+	  var filter = $(this).data('filter');
+	  $('.toc').show();
+	  toc.hide();
+	  $('.toc-link[data-tags~=' + filter + ']').fadeIn(350); 
+  });
   // Only show recent
+  tagsRight.hide();
   toc.hide();
   toc.slice(0, {{ site.recent_num }}).fadeIn(350);
 

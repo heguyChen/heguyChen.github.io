@@ -80,7 +80,23 @@
   list-style: none
   border-top: 1px solid $tag-border-color
 
-
+// my right
+#sidebar-tags-right
+  margin: 0
+  padding: 0
+  list-style: none
+  border-top: 1px solid $tag-border-color
+  float: left
+  width: $sidebar-left-width
+  background: $sidebar-left-bg
+  
+.sidebar-tag-right
+  text-align: left
+  margin: 0
+  padding: 0
+  list-style: none
+  border-top: 1px solid $tag-border-color-right
+	 
 .sidebar-tag
   font-size: $tag-font-size
   line-height: $tag-height
@@ -157,6 +173,25 @@
   &::-webkit-scrollbar-thumb
     background: $toc-scrollbar-color
 
+.toc
+  height: calc(100% - #{$search-box-height + 1})
+  padding-top: 15px
+  background: $toc-bg
+  overflow-y: auto
+  -webkit-overflow-scrolling: touch
+  &:after
+    content: ""
+    float: left
+    clear: both
+    width: 100%
+    height: 10px
+  &::-webkit-scrollbar
+    width: $toc-scrollbar-width
+  &::-webkit-scrollbar-thumb
+    background: $toc-scrollbar-color
+	
+	
+	
 .toc-link
   position: relative
   float: left

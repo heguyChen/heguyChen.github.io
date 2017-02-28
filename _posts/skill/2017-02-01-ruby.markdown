@@ -1,0 +1,6 @@
+---
+layout: post
+title: ruby
+tag: ruby
+---
+非正式123

@@ -14,7 +14,7 @@
       <li class="sidebar-tag active" data-filter="recent">最新文章</li>
       {% if site.filter == 'category' %}
         {% for category in site.categories %}
-          <li class="sidebar-tag" data-filter="{{ category | first }}">{{ category | first }}</li>
+          <li class="sidebar-tag" data-filter="{{ category[0] }}">{{ category[0] }}</li>
         {% endfor %}
       {% elsif site.filter == 'tag' %}
         {% for tag in site.tags %}
@@ -30,22 +30,38 @@
         <input id="search-input" name="wd" type="text" placeholder="Search" />
         <input type="hidden" name="" value="{{ site.url }}">
       </form>
+	  
     </div>
 
     <nav id="toc">
+	 
+	<div id="sidebar-tags-right">
+      {% if site.choose == 'tag' %}   
+        {% for tag in site.tags %}
+          <li  name="sidebar-tag-right" class="sidebar-tag" data-filter="{{ tag | first }}">{{ tag | first }}</li>
+        {% endfor %}
+      {% endif %}
+     </div>
+	
       {% if site.filter == 'category' %}
         {% for post in site.posts %}
           <a class="toc-link" data-tags="{{ post.categories | join: ' ' }}" href="{{ post.url }}">
             {{ post.title }}
           </a>
         {% endfor %}
-      {% elsif site.filter == 'tag' %}
-        {% for post in site.posts %}
+      {% elsif site.choose == 'tag' %}
+        
+      {% endif %}
+	  <div class="toc">
+	  {% if site.choose == 'tag' %}
+		
+		{% for post in site.posts %}
           <a class="toc-link" data-tags="{{ post.tags | join: ' ' }}" href="{{ post.url }}">
             {{ post.title }}
           </a>
         {% endfor %}
-      {% endif %}
+	  {% endif %}
+	  </div>
     </nav>
   </div>
 </aside>
